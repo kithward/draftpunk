@@ -36,6 +36,9 @@ module DraftPunk
       else
         ActiveRecord::Base.connection.table_exists?(table_name)
       end
+    rescue ActiveRecord::NoDatabaseError
+      # fixes issue with initial DB creation during rake db:create
+      false
     end
 
     def setup_amoeba_for(target_model, options={})
