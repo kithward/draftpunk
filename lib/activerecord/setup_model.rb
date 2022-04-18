@@ -36,8 +36,10 @@ module DraftPunk
       else
         ActiveRecord::Base.connection.table_exists?(table_name)
       end
-    rescue ActiveRecord::NoDatabaseError
+    rescue ActiveRecord::NoDatabaseError => no_db_exc
       # fixes issue with initial DB creation during rake db:create
+      Rails.logger.warn "Database does not exist - returning false from model_table_exists? | #{no_db_exc.message}"
+      Rails.logger.warn no_db_exc.backtrace.join("\r\n")
       false
     end
 
