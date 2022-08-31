@@ -1,3 +1,3 @@
 module DraftPunk
-  VERSION = "0.3.7.pre"
+  VERSION = "0.3.7"
 end
