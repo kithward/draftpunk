@@ -13,7 +13,7 @@ module DraftPunk
         @live_version = current_approved_version
         @previous_version = self
         @live_version.draft.try(:destroy)
-        @previous_version.update_attributes(
+        @previous_version.update(
           current_approved_version_id: nil,
                      approved_version: @live_version)
         @live_version.publish_draft!
