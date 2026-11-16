@@ -1,0 +1,10 @@
+# Run the specs against a chosen Rails:
+#   BUNDLE_GEMFILE=compat/Gemfile RAILS_VERSION="~> 8.1.0" bundle install && BUNDLE_GEMFILE=compat/Gemfile bundle exec rspec
+# (Rails 6.1 needs SQLITE_VERSION="~> 1.4"; 8.x needs "~> 2.1".)
+source 'https://rubygems.org'
+gem 'draft_punk', path: '..'
+gem 'rails', ENV.fetch('RAILS_VERSION', '~> 7.0.0')
+gem 'sqlite3', ENV.fetch('SQLITE_VERSION', '~> 1.4')
+gem 'rspec', '~> 3.0'
+gem 'timecop'
+gem 'concurrent-ruby', '< 1.3.5' # Rails 7.0 needs logger loaded first
